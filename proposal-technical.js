@@ -1,4 +1,4 @@
-import { proposalContent } from './proposal-content.js?v=sales20261027-r6visual';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r7local';
 const icon = name => `<svg class="i" aria-hidden="true"><use href="./assets/ui-icons/sprite.svg#i-${name}"></use></svg>`;
 
 // The full operating walkthrough remains available without dominating the proposal.

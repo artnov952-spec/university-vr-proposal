@@ -19,7 +19,7 @@ for (const language of ['ru','uz']) {
   assert.ok(html.includes('<details class="sales-technical" id="technical-details">'),'Operating detail is initially collapsed');
   assert.equal((html.match(/<section\b/g)||[]).length,7);
   assert.ok(html.includes('id="open-pilot"'));
-  assert.ok(html.includes('dyfed-powys.police.uk')&&html.includes('fpi.omb.gov/program/16.054.html'));
+  assert.ok(!html.includes('dyfed-powys.police.uk')&&!html.includes('fpi.omb.gov/program/16.054.html'),'Removed international references do not reappear');
   assert.ok(!html.includes('10 курсантов одновременно'));
   assert.equal((html.match(/id="expand-workspace"/g)||[]).length,1);
   assert.ok(html.slice(0,html.indexOf('<main ')).includes('id="expand-workspace"'),'Program entry is visible in the sticky header');

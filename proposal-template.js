@@ -1,10 +1,9 @@
-import { proposalContent } from './proposal-content.js?v=sales20261027-r6visual';
-import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r6visual';
-import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r6visual';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r6visual';
-import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r6visual';
-import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r6visual';
-import { renderInternationalEvidence } from './international-evidence.js?v=sales20261027-r6visual';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r7local';
+import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r7local';
+import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r7local';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r7local';
+import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r7local';
+import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r7local';
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const icon = name => `<svg class="i" aria-hidden="true"><use href="./assets/ui-icons/sprite.svg#i-${name}"></use></svg>`;
 export const SALES_SECTIONS = ['purpose','experience','environments','benefits','workflow','classroom','next-step'];
@@ -93,5 +92,5 @@ export function renderProposal(language) {
     </section>
     <section class="sales-section sales-next" id="next-step"><div class="wrap sales-next-layout"><div><p class="eyebrow">${t('СЛЕДУЮЩИЙ ШАГ','KEYINGI QADAM')}</p><h2>${t('Начнем с одной группы.<br><span>И одной реальной задачи.</span>','Bitta guruhdan boshlaymiz.<br><span>Va bitta haqiqiy vazifadan.</span>')}</h2><p>${t('Выберем ситуацию, покажем путь курсанта и разберем результат вместе с преподавателем.','Vaziyatni tanlaymiz, kursant yo‘lini ko‘rsatamiz va natijani o‘qituvchi bilan tahlil qilamiz.')}</p></div><div class="sales-next-action"><button type="button" id="open-pilot" class="btn btn--lg" aria-haspopup="dialog">${t('Выбрать пробное занятие','Sinov mashg‘ulotini tanlash')}${icon('arrow-right')}</button><span>${t('Сценарий, группа и план показа. Без лишних шагов.','Ssenariy, guruh va namoyish rejasi. Ortiqcha qadamlarsiz.')}</span></div></div></section>
   </main>
-  <footer class="sales-footer wrap"><div><b>CLOUDPLUS</b><button class="text-button" id="open-about">${t('О демонстрации и источниках','Namoyish va manbalar haqida')}</button></div>${renderInternationalEvidence(language)}<p>${t('Интерактивная концепция на учебных данных. CG-сцены и баллы показаны на примере. Класс рассчитан в проекте на 10 мест; реальная одновременная работа и обмен с E-reyting требуют разработки, подключения и проверки на оборудовании.','O‘quv ma’lumotlaridagi interaktiv konsepsiya. CG-sahnalar va ballar namuna sifatida ko‘rsatilgan. Xona loyihasi 10 joyli; haqiqiy bir vaqtda ishlash va E-reyting almashuvi ishlab chiqish, ulash va jihozda tekshirishni talab qiladi.')}</p></footer>`;
+  <footer class="sales-footer wrap"><div><b>CLOUDPLUS</b><button class="text-button" id="open-about">${t('О демонстрации и источниках','Namoyish va manbalar haqida')}</button></div><p>${t('Интерактивная концепция на учебных данных. CG-сцены и баллы показаны на примере. Класс рассчитан в проекте на 10 мест; реальная одновременная работа и обмен с E-reyting требуют разработки, подключения и проверки на оборудовании.','O‘quv ma’lumotlaridagi interaktiv konsepsiya. CG-sahnalar va ballar namuna sifatida ko‘rsatilgan. Xona loyihasi 10 joyli; haqiqiy bir vaqtda ishlash va E-reyting almashuvi ishlab chiqish, ulash va jihozda tekshirishni talab qiladi.')}</p></footer>`;
 }

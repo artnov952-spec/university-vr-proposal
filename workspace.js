@@ -1,11 +1,11 @@
-import { scenarios as sourceScenarios, modules as sourceModules } from './content.js?v=sales20261027-r6visual';
-import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r6visual';
-import { translate, localizedField, seedTranslations } from './workspace-i18n.js?v=sales20261027-r6visual';
-import { createExchange, exchangeRows, validateExchange, exchangeCSV, EXCHANGE_FIELDS, EXCHANGE_TABS } from './workspace-exchange.js?v=sales20261027-r6visual';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r6visual';
-import { renderScenarioVisual, visualForAttempt, prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r6visual';
-export { translate, localizedField } from './workspace-i18n.js?v=sales20261027-r6visual';
-export { exchangeRows, validateExchange, exchangeCSV } from './workspace-exchange.js?v=sales20261027-r6visual';
+import { scenarios as sourceScenarios, modules as sourceModules } from './content.js?v=sales20261027-r7local';
+import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r7local';
+import { translate, localizedField, seedTranslations } from './workspace-i18n.js?v=sales20261027-r7local';
+import { createExchange, exchangeRows, validateExchange, exchangeCSV, EXCHANGE_FIELDS, EXCHANGE_TABS } from './workspace-exchange.js?v=sales20261027-r7local';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r7local';
+import { renderScenarioVisual, visualForAttempt, prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r7local';
+export { translate, localizedField } from './workspace-i18n.js?v=sales20261027-r7local';
+export { exchangeRows, validateExchange, exchangeCSV } from './workspace-exchange.js?v=sales20261027-r7local';
 
 // Local demo only. PDF pages 7-23 define the scope, not an approved scoring method.
 // Integration: mountWorkspace(root, { onOpenScene, onStateChange }); no parent changes.
@@ -673,7 +673,7 @@ export function mountWorkspace(root, options = {}) {
   frame.setAttribute('data-vr-workspace', '');
   const stylesheet = doc.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = new URL('./workspace.css?v=sales20261027-r6visual', import.meta.url).href;
+  stylesheet.href = new URL('./workspace.css?v=sales20261027-r7local', import.meta.url).href;
   if (!doc.head?.querySelector?.('link[href*="workspace.css"]')) root.append(stylesheet);
   root.append(frame);
 

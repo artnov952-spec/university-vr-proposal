@@ -1,17 +1,16 @@
-import { mountWorkspace, calculateResult } from './workspace.js?v=sales20261027-r6visual';
-import { modules, scenarios } from './content.js?v=sales20261027-r6visual';
-import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r6visual';
-import { proposalContent } from './proposal-content.js?v=sales20261027-r6visual';
-import { renderProposal, escapeHtml as escape, icon } from './proposal-template.js?v=sales20261027-r6visual';
-import { createPresentationDemo, reducePresentationDemo, renderPresentationDemo } from './presentation-demo.js?v=sales20261027-r6visual';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r6visual';
-import { prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r6visual';
-import { environmentIds, createEnvironmentExamples, reduceEnvironmentExample, renderEnvironmentExample } from './proposal-environments.js?v=sales20261027-r6visual';
-import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r6visual';
-import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r6visual';
-import { mountSalesHero } from './sales-hero.js?v=sales20261027-r6visual';
-import { PILOT_CASES, DEFAULT_PILOT_CASE, pilotPlan, renderPilotPlan } from './pilot-plan.js?v=sales20261027-r6visual';
-import { mountInternationalGallery } from './international-gallery.js?v=sales20261027-r6visual';
+import { mountWorkspace, calculateResult } from './workspace.js?v=sales20261027-r7local';
+import { modules, scenarios } from './content.js?v=sales20261027-r7local';
+import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r7local';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r7local';
+import { renderProposal, escapeHtml as escape, icon } from './proposal-template.js?v=sales20261027-r7local';
+import { createPresentationDemo, reducePresentationDemo, renderPresentationDemo } from './presentation-demo.js?v=sales20261027-r7local';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r7local';
+import { prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r7local';
+import { environmentIds, createEnvironmentExamples, reduceEnvironmentExample, renderEnvironmentExample } from './proposal-environments.js?v=sales20261027-r7local';
+import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r7local';
+import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r7local';
+import { mountSalesHero } from './sales-hero.js?v=sales20261027-r7local';
+import { PILOT_CASES, DEFAULT_PILOT_CASE, pilotPlan, renderPilotPlan } from './pilot-plan.js?v=sales20261027-r7local';
 
 const $ = id => document.getElementById(id);
 const t = (ru, uz) => getLanguage() === 'uz' ? uz : ru;
@@ -21,7 +20,7 @@ let presentationDemo = createPresentationDemo();
 const environmentExamples = createEnvironmentExamples();
 const roomChecks = new Set();
 let deliveryStep=0;
-let heroController, countryController, expandedEnvironment=null, pilotCase=DEFAULT_PILOT_CASE;
+let heroController, expandedEnvironment=null, pilotCase=DEFAULT_PILOT_CASE;
 function selectDelivery(index) {
   const copy=[
     [t('Результат: согласован план занятий','Natija: mashg‘ulot rejasi kelishildi'),t('Университет и разработчик согласуют 20 ситуаций, действия курсанта и критерии проверки.','Universitet va ishlab chiquvchi 20 vaziyat, kursant amallari va tekshirish mezonlarini kelishadi.')],
@@ -92,7 +91,6 @@ function syncDialogLock() {
   }
   syncPreviewMotion();
   heroController?.setSuspended('dialog',open);
-  countryController?.setSuspended(open);
 }
 
 function showDialog(id) {
@@ -110,7 +108,7 @@ function openModule(id) {
 }
 function panoramaURL(id, embed = false, context = presentationDemo) {
   const visual = context?.caseId?.startsWith(id+'-') ? '&case='+encodeURIComponent(context.caseId)+'&points='+encodeURIComponent(context.points.join(',')) : '';
-  return './panorama/viewer.html?v=sales20261027-r6visual&scene='+encodeURIComponent(id)+'&theme=light&lang='+getLanguage()+(embed?'&embed=1':'')+visual;
+  return './panorama/viewer.html?v=sales20261027-r7local&scene='+encodeURIComponent(id)+'&theme=light&lang='+getLanguage()+(embed?'&embed=1':'')+visual;
 }
 function sceneTitle(id) { return id === 'classroom' ? t('Учебная аудитория','O‘quv auditoriyasi') : content().scenes[id]?.title; }
 function openScene(id, context = presentationDemo) {
@@ -302,16 +300,13 @@ function renderDialogCopy() {
 function render() {
   navigationObserver?.disconnect(); headerObserver?.disconnect(); previewObserver?.disconnect();
   heroController?.dispose();
-  countryController?.dispose();
   const isSystemOpen = $('system-dialog').open;
   if (!isSystemOpen) systemRoot.remove();
   document.documentElement.lang = getLanguage();
   document.title = t('Учебный VR-комплекс · Предложение для университета','O‘quv VR-kompleksi · Universitet uchun taklif');
   $('proposal').innerHTML = renderProposal(getLanguage());
   heroController=mountSalesHero($('hero-scene'),getLanguage());
-  countryController=mountInternationalGallery($('international-experience'));
   heroController?.setSuspended('dialog',Boolean(document.querySelector('dialog[open]')));
-  countryController?.setSuspended(Boolean(document.querySelector('dialog[open]')));
   renderRoomDialog();renderEnvironmentDialog();renderPilot();
   if ($('scene-preview')) {
     $('scene-preview').addEventListener('load',syncPreviewMotion);
@@ -455,4 +450,4 @@ const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   if(entry.isIntersecting){entry.target.classList.add('is-revealed');revealObserver.unobserve(entry.target);}
 }),{threshold:.1});
 document.querySelectorAll('.slide').forEach(section=>revealObserver.observe(section));
-window.addEventListener('pagehide',()=>{revealObserver.disconnect();heroController?.dispose();countryController?.dispose();},{once:true});
+window.addEventListener('pagehide',()=>{revealObserver.disconnect();heroController?.dispose();},{once:true});
