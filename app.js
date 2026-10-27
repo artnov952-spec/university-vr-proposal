@@ -1,17 +1,17 @@
-import { mountWorkspace, calculateResult } from './workspace.js?v=sales20261027-r5visual';
-import { modules, scenarios } from './content.js?v=sales20261027-r5visual';
-import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r5visual';
-import { proposalContent } from './proposal-content.js?v=sales20261027-r5visual';
-import { renderProposal, escapeHtml as escape, icon } from './proposal-template.js?v=sales20261027-r5visual';
-import { createPresentationDemo, reducePresentationDemo, renderPresentationDemo } from './presentation-demo.js?v=sales20261027-r5visual';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r5visual';
-import { prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r5visual';
-import { environmentIds, createEnvironmentExamples, reduceEnvironmentExample, renderEnvironmentExample } from './proposal-environments.js?v=sales20261027-r5visual';
-import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r5visual';
-import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r5visual';
-import { mountSalesHero } from './sales-hero.js?v=sales20261027-r5visual';
-import { PILOT_CASES, DEFAULT_PILOT_CASE, pilotPlan, renderPilotPlan } from './pilot-plan.js?v=sales20261027-r5visual';
-import { mountInternationalGallery } from './international-gallery.js?v=sales20261027-r5visual';
+import { mountWorkspace, calculateResult } from './workspace.js?v=sales20261027-r6visual';
+import { modules, scenarios } from './content.js?v=sales20261027-r6visual';
+import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r6visual';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r6visual';
+import { renderProposal, escapeHtml as escape, icon } from './proposal-template.js?v=sales20261027-r6visual';
+import { createPresentationDemo, reducePresentationDemo, renderPresentationDemo } from './presentation-demo.js?v=sales20261027-r6visual';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r6visual';
+import { prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r6visual';
+import { environmentIds, createEnvironmentExamples, reduceEnvironmentExample, renderEnvironmentExample } from './proposal-environments.js?v=sales20261027-r6visual';
+import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r6visual';
+import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r6visual';
+import { mountSalesHero } from './sales-hero.js?v=sales20261027-r6visual';
+import { PILOT_CASES, DEFAULT_PILOT_CASE, pilotPlan, renderPilotPlan } from './pilot-plan.js?v=sales20261027-r6visual';
+import { mountInternationalGallery } from './international-gallery.js?v=sales20261027-r6visual';
 
 const $ = id => document.getElementById(id);
 const t = (ru, uz) => getLanguage() === 'uz' ? uz : ru;
@@ -110,7 +110,7 @@ function openModule(id) {
 }
 function panoramaURL(id, embed = false, context = presentationDemo) {
   const visual = context?.caseId?.startsWith(id+'-') ? '&case='+encodeURIComponent(context.caseId)+'&points='+encodeURIComponent(context.points.join(',')) : '';
-  return './panorama/viewer.html?v=sales20261027-r5visual&scene='+encodeURIComponent(id)+'&theme=light&lang='+getLanguage()+(embed?'&embed=1':'')+visual;
+  return './panorama/viewer.html?v=sales20261027-r6visual&scene='+encodeURIComponent(id)+'&theme=light&lang='+getLanguage()+(embed?'&embed=1':'')+visual;
 }
 function sceneTitle(id) { return id === 'classroom' ? t('Учебная аудитория','O‘quv auditoriyasi') : content().scenes[id]?.title; }
 function openScene(id, context = presentationDemo) {

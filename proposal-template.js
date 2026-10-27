@@ -1,10 +1,10 @@
-import { proposalContent } from './proposal-content.js?v=sales20261027-r5visual';
-import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r5visual';
-import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r5visual';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r5visual';
-import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r5visual';
-import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r5visual';
-import { renderInternationalEvidence } from './international-evidence.js?v=sales20261027-r5visual';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r6visual';
+import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r6visual';
+import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r6visual';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r6visual';
+import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r6visual';
+import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r6visual';
+import { renderInternationalEvidence } from './international-evidence.js?v=sales20261027-r6visual';
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const icon = name => `<svg class="i" aria-hidden="true"><use href="./assets/ui-icons/sprite.svg#i-${name}"></use></svg>`;
 export const SALES_SECTIONS = ['purpose','experience','environments','benefits','workflow','classroom','next-step'];

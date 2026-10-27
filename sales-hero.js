@@ -1,5 +1,5 @@
-import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r5visual';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r5visual';
+import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r6visual';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r6visual';
 
 export const HERO_DURATION = 10000;
 export const heroFrameAt = elapsed => {

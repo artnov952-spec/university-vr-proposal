@@ -1,6 +1,6 @@
 // One-point CG previews. Portal anchors were checked against the rendered images.
 // Each supplied image covers 180 horizontal / 90 vertical degrees, not a room.
-import { PANORAMA_MEDIA } from './media.js?v=sales20261027-r5visual';
+import { PANORAMA_MEDIA } from './media.js?v=sales20261027-r6visual';
 export const SCENE_ORDER = Object.freeze(['courtyard', 'entrance', 'traffic', 'market', 'classroom']);
 const shared = { angle: 180, verticalAngle: 90, wrap: false, initialYaw: 0, initialPitch: 0, zoomMin: .9, zoomMax: 1.8 };
 export const SCENES = {
