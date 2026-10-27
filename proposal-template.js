@@ -1,10 +1,10 @@
-import { proposalContent } from './proposal-content.js?v=sales20261027-r4standalone';
-import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r4standalone';
-import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r4standalone';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r4standalone';
-import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r4standalone';
-import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r4standalone';
-import { renderInternationalEvidence } from './international-evidence.js?v=sales20261027-r4standalone';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r5visual';
+import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r5visual';
+import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r5visual';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r5visual';
+import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r5visual';
+import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r5visual';
+import { renderInternationalEvidence } from './international-evidence.js?v=sales20261027-r5visual';
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const icon = name => `<svg class="i" aria-hidden="true"><use href="./assets/ui-icons/sprite.svg#i-${name}"></use></svg>`;
 export const SALES_SECTIONS = ['purpose','experience','environments','benefits','workflow','classroom','next-step'];
@@ -83,8 +83,13 @@ export function renderProposal(language) {
     </section>
     <section class="sales-section wrap" id="classroom">
       ${heading('05',t('КЛАСС И ВНЕДРЕНИЕ','XONA VA JORIY ETISH'),t('Рабочее место.<br><span>Свой VR-комплект.</span>','Ish joyi.<br><span>O‘z VR-to‘plami.</span>'),t('Десять мест, преподаватель и общий экран. Без отдельной площадки для перемещения.','O‘nta joy, o‘qituvchi va umumiy ekran. Harakatlanish uchun alohida maydonsiz.'))}
-      <div class="sales-room-grid"><div class="sales-room-photo"><img src="${PANORAMA_MEDIA.classroom.src}" width="1774" height="887" alt="${t('CG-класс на десять рабочих мест с VR','O‘nta VR ish joyli CG-xona')}" loading="lazy"><button type="button" class="btn btn--soft" data-open-scene="classroom">${icon('eye')}${t('Панорама аудитории','Auditoriya panoramasi')}</button></div><div class="sales-room-plan">${renderClassroomPlan(language,{interactive:false})}<button type="button" class="text-button" data-open-room aria-haspopup="dialog">${t('Развернуть схему','Sxemani kengaytirish')}${icon('arrow-up-right')}</button></div></div>
-      <div class="sales-rollout-heading"><h3>${t('Четыре шага до учебного класса','O‘quv xonasigacha to‘rtta qadam')}</h3></div><div class="delivery-steps sales-rollout" role="group" aria-label="${t('Этапы внедрения','Joriy etish bosqichlari')}">${[t('Согласовать ситуации','Vaziyatlarni kelishish'),t('Проверить на оборудовании','Jihozda tekshirish'),t('Собрать комплекс','Kompleksni yig‘ish'),t('Обучить преподавателей','O‘qituvchilarni o‘qitish')].map((title,index)=>`<button type="button" class="delivery-step-button" data-delivery="${index}" aria-pressed="${index===0}"><span>0${index+1}</span><h3>${title}</h3></button>`).join('')}</div><div class="delivery-output" id="delivery-output" aria-live="polite"></div>
+      <div class="sales-room-grid"><div class="sales-room-photo"><img src="${PANORAMA_MEDIA.classroom.src}" width="1774" height="887" alt="${t('CG-класс на десять рабочих мест с VR','O‘nta VR ish joyli CG-xona')}" loading="lazy"><button type="button" class="btn btn--soft" data-open-scene="classroom">${icon('eye')}${t('Панорама аудитории','Auditoriya panoramasi')}</button></div><div class="sales-room-plan"><div class="sales-plan-heading"><strong>${t('10 рабочих мест с VR','VR bilan 10 ta ish joyi')}</strong><span>${t('Преподаватель и общий экран','O‘qituvchi va umumiy ekran')}</span></div>${renderClassroomPlan(language,{interactive:false,compact:true})}<button type="button" class="text-button" data-open-room aria-haspopup="dialog">${t('Рассмотреть схему','Sxemani ko‘rish')}${icon('arrow-up-right')}</button></div></div>
+      <div class="sales-rollout-heading"><h3>${t('Четыре шага до учебного класса','O‘quv xonasigacha to‘rtta qadam')}</h3><p>${t('От учебной задачи до первого занятия. Выберите этап.','O‘quv vazifasidan birinchi mashg‘ulotgacha. Bosqichni tanlang.')}</p></div><div class="delivery-steps sales-rollout" role="group" aria-label="${t('Этапы внедрения','Joriy etish bosqichlari')}">${[
+        ['book-open',t('Согласовать ситуации','Vaziyatlarni kelishish'),t('20 ситуаций и понятные критерии','20 vaziyat va aniq mezonlar')],
+        ['monitor',t('Проверить на оборудовании','Jihozda tekshirish'),t('Один полный пример в VR','VR’da bitta to‘liq namuna')],
+        ['database',t('Собрать комплекс','Kompleksni yig‘ish'),t('Программа, сценарии и результаты','Dastur, ssenariylar va natijalar')],
+        ['users',t('Обучить преподавателей','O‘qituvchilarni o‘qitish'),t('Практика, инструкции и поддержка','Amaliyot, yo‘riqnoma va yordam')]
+      ].map(([ico,title,detail],index)=>`<button type="button" class="delivery-step-button" data-delivery="${index}" aria-pressed="${index===0}" aria-controls="delivery-output"><span class="delivery-card-top"><span>0${index+1}</span>${icon(ico)}</span><h3>${title}</h3><p>${detail}</p><span class="delivery-card-link">${t('Результат этапа','Bosqich natijasi')}${icon('arrow-right')}</span></button>`).join('')}</div><div class="delivery-output" id="delivery-output" aria-live="polite"></div>
     </section>
     <section class="sales-section sales-next" id="next-step"><div class="wrap sales-next-layout"><div><p class="eyebrow">${t('СЛЕДУЮЩИЙ ШАГ','KEYINGI QADAM')}</p><h2>${t('Начнем с одной группы.<br><span>И одной реальной задачи.</span>','Bitta guruhdan boshlaymiz.<br><span>Va bitta haqiqiy vazifadan.</span>')}</h2><p>${t('Выберем ситуацию, покажем путь курсанта и разберем результат вместе с преподавателем.','Vaziyatni tanlaymiz, kursant yo‘lini ko‘rsatamiz va natijani o‘qituvchi bilan tahlil qilamiz.')}</p></div><div class="sales-next-action"><button type="button" id="open-pilot" class="btn btn--lg" aria-haspopup="dialog">${t('Выбрать пробное занятие','Sinov mashg‘ulotini tanlash')}${icon('arrow-right')}</button><span>${t('Сценарий, группа и план показа. Без лишних шагов.','Ssenariy, guruh va namoyish rejasi. Ortiqcha qadamlarsiz.')}</span></div></div></section>
   </main>

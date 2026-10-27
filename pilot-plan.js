@@ -1,6 +1,6 @@
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r4standalone';
-import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r4standalone';
-import { proposalContent } from './proposal-content.js?v=sales20261027-r4standalone';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r5visual';
+import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r5visual';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r5visual';
 const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const PILOT_CASES = Object.freeze(scenarioLibrary.map(item => item.id));
 export const DEFAULT_PILOT_CASE = 'market-01';

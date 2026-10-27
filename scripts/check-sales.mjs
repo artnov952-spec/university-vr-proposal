@@ -5,7 +5,9 @@ import { renderProposal, SALES_SECTIONS } from '../proposal-template.js';
 import { renderClassroomPlan } from '../classroom-plan.js';
 import { renderEnvironmentExample } from '../proposal-environments.js';
 import { scenarioLibrary } from '../scenario-library.js';
-import { INTERNATIONAL_EXAMPLES, renderInternationalEvidence } from '../international-evidence.js';
+import { INTERNATIONAL_EXAMPLES, INTERNATIONAL_VISUALS, renderInternationalEvidence } from '../international-evidence.js';
+import { COUNTRY_ORDER, COUNTRY_SLIDE_DURATION, adjacentCountry, countryCanRun } from '../international-gallery.js';
+import { readFile, stat } from 'node:fs/promises';
 import { STORAGE_KEY } from '../workspace.js';
 import { LANGUAGE_KEY } from '../locale.js';
 
@@ -27,11 +29,32 @@ assert.equal(pilotPlan().caseId,'market-01','The existing default is preserved')
 assert.equal(INTERNATIONAL_EXAMPLES.length,6);
 assert.equal(new Set(INTERNATIONAL_EXAMPLES.map(item=>item.code)).size,6);
 assert.ok(INTERNATIONAL_EXAMPLES.every(item=>item.url.startsWith('https://')));
+assert.deepEqual(COUNTRY_ORDER,INTERNATIONAL_EXAMPLES.map(item=>item.code));
+assert.equal(COUNTRY_SLIDE_DURATION,8500);
+assert.equal(adjacentCountry('SG'),'UK');
+assert.equal(adjacentCountry('UK',-1),'SG');
+assert.throws(()=>adjacentCountry('invalid'),RangeError);
+const countryRunning={playing:true,onscreen:true,hidden:false,reduced:false,suspended:false,focused:false,hovered:false};
+assert.equal(countryCanRun(countryRunning),true);
+for(const [key,value] of [['playing',false],['onscreen',false],['hidden',true],['reduced',true],['suspended',true],['focused',true],['hovered',true]])assert.equal(countryCanRun({...countryRunning,[key]:value}),false);
+for(const visual of Object.values(INTERNATIONAL_VISUALS))assert.ok((await stat(new URL('../'+visual.src,import.meta.url))).size>50000);
+const visualCSS=await readFile(new URL('../sales-visuals.css',import.meta.url),'utf8');
+assert.match(visualCSS,/\.sales-room-plan \.classroom-plan\s*\{[^}]*width:100%;[^}]*max-width:none/);
+assert.match(visualCSS,/prefers-reduced-motion:reduce/);
 for(const language of ['ru','uz']) {
   const html=renderProposal(language);
   assert.ok(!html.includes('Взгляд курсанта')&&!html.includes('Kursant nigohi'));
   assert.ok(html.indexOf('id="international-experience"')>html.indexOf('<footer'),'International evidence is compact and at the end');
   assert.equal((renderInternationalEvidence(language).match(/data-evidence-country=/g)||[]).length,6);
+  const evidence=renderInternationalEvidence(language);
+  assert.ok(evidence.includes('<aside')&&!evidence.includes('<details'),'International experience is always visible, not an accordion');
+  assert.equal((evidence.match(/data-country="/g)||[]).length,6);
+  assert.equal((evidence.match(/class="international-slide"/g)||[]).length,6);
+  assert.equal((evidence.match(/ hidden/g)||[]).length,5);
+  assert.equal((evidence.match(/class="international-source"/g)||[]).length,6);
+  assert.equal((renderClassroomPlan(language,{interactive:false,compact:true}).match(/class="plan-headset"/g)||[]).length,10);
+  assert.ok(html.includes('delivery-card-link')&&html.includes('classroom-plan--compact'));
+  if(language==='uz')assert.ok(!/[А-Яа-яЁё]/.test(evidence));
   assert.ok(!html.slice(html.indexOf('id="benefits"'),html.indexOf('id="workflow"')).includes('dyfed-powys'),'Evidence does not interrupt the benefits');
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
   assert.equal(new Set(ids).size,ids.length,'No duplicate proposal IDs');
@@ -55,4 +78,4 @@ for(const language of ['ru','uz']) {
     assert.ok(!/undefined|NaN|https?:\/\/.*(?:booking|calendar)|<form/.test(rendered));
   }
 }
-console.log(JSON.stringify({result:'passed',salesSections:7,heroFrames:5,heroSeconds:10,motionGuards:6,pilotPlans:40,pilotScenarios:20,pilotGroups:4,readonlyCompactPlan:true}));
+console.log(JSON.stringify({result:'passed',salesSections:7,heroFrames:5,heroSeconds:10,motionGuards:6,pilotPlans:40,pilotScenarios:20,pilotGroups:4,readonlyCompactPlan:true,internationalSlides:6,internationalMotionGuards:7}));

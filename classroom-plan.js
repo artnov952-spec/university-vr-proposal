@@ -1,6 +1,13 @@
-export function renderClassroomPlan(language = 'ru', { interactive = true } = {}) {
+export function renderClassroomPlan(language = 'ru', { interactive = true, compact = false } = {}) {
   const t = (ru, uz) => language === 'uz' ? uz : ru;
   const control = (id, label, body, seat = '') => interactive ? `<g class="plan-zone" role="button" tabindex="0" data-zone="${id}"${seat ? ` data-seat="${seat}"` : ''} aria-label="${label}" aria-controls="classroom-detail">${body}</g>` : `<g class="plan-zone plan-static">${body}</g>`;
+  if (compact) {
+    const desks = Array.from({ length:10 }, (_, i) => {
+      const x = i % 2 === 0 ? 46 : 290, y = 135 + Math.floor(i / 2) * 57;
+      return `<g class="plan-zone plan-static"><rect x="${x}" y="${y}" width="184" height="44" rx="10"/><path class="plan-device" d="M${x+14} ${y+10}h29v18h-29z m14 18v5 m-8 0h16"/><rect class="plan-headset" x="${x+62}" y="${y+16}" width="27" height="14" rx="5"/><path class="plan-device" d="M${x+67} ${y+16}v-5h17v5"/><text x="${x+145}" y="${y+29}" text-anchor="middle">${String(i+1).padStart(2,'0')}</text></g>`;
+    }).join('');
+    return `<div class="classroom-plan classroom-plan--compact"><svg viewBox="0 0 520 470" role="img" aria-label="${t('Схема аудитории на десять рабочих мест с VR','VR bilan o‘nta ish joyli auditoriya sxemasi')}"><rect class="plan-room" x="14" y="12" width="492" height="422" rx="22"/><path class="plan-window" d="M14 120v65m0 30v65m0 30v65"/><g class="plan-zone plan-static"><rect x="120" y="30" width="280" height="34" rx="8"/><text x="260" y="53" text-anchor="middle">${t('Общий экран','Umumiy ekran')}</text><rect x="159" y="80" width="202" height="38" rx="10"/><text x="260" y="105" text-anchor="middle">${t('Преподаватель','O‘qituvchi')}</text></g>${desks}<path class="plan-door" d="M506 386h-42m42 0a42 42 0 0 0-42 42"/><text class="plan-label" x="340" y="459">${t('Вход / проход','Kirish / yo‘lak')}</text></svg></div>`;
+  }
   const screen = control('screen', t('Общий экран', 'Umumiy ekran'), `<rect x="170" y="50" width="310" height="28" rx="7"/><text x="325" y="69" text-anchor="middle">${t('Общий экран', 'Umumiy ekran')}</text>`);
   const teacher = control('teacher', t('Место преподавателя', 'O‘qituvchi joyi'), `<rect x="239" y="106" width="172" height="48" rx="12"/><text x="325" y="135" text-anchor="middle">${t('Преподаватель', 'O‘qituvchi')}</text>`);
   const desks = Array.from({ length: 10 }, (_, i) => {

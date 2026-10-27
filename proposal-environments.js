@@ -1,5 +1,5 @@
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r4standalone';
-import { renderScenarioVisual, prefetchScenarioFrame, SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r4standalone';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r5visual';
+import { renderScenarioVisual, prefetchScenarioFrame, SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r5visual';
 
 const icon=name=>`<svg class="i" aria-hidden="true"><use href="./assets/ui-icons/sprite.svg#i-${name}"></use></svg>`;
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
