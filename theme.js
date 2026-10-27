@@ -6,7 +6,7 @@
     var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = '#710202';
   }
   // Retire the former preference without changing any saved learning data.
-  try { localStorage.setItem('university-vr.theme', 'light'); } catch (_) {}
+  try { localStorage.setItem('university-vr-proposal.theme', 'light'); } catch (_) {}
   applyLight(); document.addEventListener('DOMContentLoaded', applyLight);
   window.addEventListener('university-ui-ready', applyLight);
 })();

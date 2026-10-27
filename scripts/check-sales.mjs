@@ -6,8 +6,12 @@ import { renderClassroomPlan } from '../classroom-plan.js';
 import { renderEnvironmentExample } from '../proposal-environments.js';
 import { scenarioLibrary } from '../scenario-library.js';
 import { INTERNATIONAL_EXAMPLES, renderInternationalEvidence } from '../international-evidence.js';
+import { STORAGE_KEY } from '../workspace.js';
+import { LANGUAGE_KEY } from '../locale.js';
 
 assert.equal(HERO_DURATION,10000);
+assert.equal(STORAGE_KEY,'university-vr-proposal.workspace.v1');
+assert.equal(LANGUAGE_KEY,'university-vr-proposal.language');
 assert.deepEqual(heroFrameAt(-1),{index:0,progress:0,complete:false});
 assert.deepEqual(heroFrameAt(NaN),heroFrameAt(0));
 assert.equal(heroFrameAt(1999).index,0);

@@ -58,7 +58,7 @@ for(const throwStorage of [false,true]) {
   runInNewContext(source,context);
   for(const fn of events) fn();
   assert.equal(root.dataset.theme,'light');assert.equal(root.style.colorScheme,'light');
-  assert.ok(writes.every(([key,value])=>key==='university-vr.theme'&&value==='light'),'No workspace data writes');
+  assert.ok(writes.every(([key,value])=>key==='university-vr-proposal.theme'&&value==='light'),'No workspace data writes');
 }
 function jpegSize(bytes) {
   assert.equal(bytes.readUInt16BE(0),0xffd8);

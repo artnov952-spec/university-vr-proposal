@@ -1,15 +1,15 @@
-import { scenarios as sourceScenarios, modules as sourceModules } from './content.js?v=sales20261027-r1';
-import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r1';
-import { translate, localizedField, seedTranslations } from './workspace-i18n.js?v=sales20261027-r1';
-import { createExchange, exchangeRows, validateExchange, exchangeCSV, EXCHANGE_FIELDS, EXCHANGE_TABS } from './workspace-exchange.js?v=sales20261027-r1';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r1';
-import { renderScenarioVisual, visualForAttempt, prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r1';
-export { translate, localizedField } from './workspace-i18n.js?v=sales20261027-r1';
-export { exchangeRows, validateExchange, exchangeCSV } from './workspace-exchange.js?v=sales20261027-r1';
+import { scenarios as sourceScenarios, modules as sourceModules } from './content.js?v=sales20261027-r4standalone';
+import { getLanguage, setLanguage, subscribeLanguage } from './locale.js?v=sales20261027-r4standalone';
+import { translate, localizedField, seedTranslations } from './workspace-i18n.js?v=sales20261027-r4standalone';
+import { createExchange, exchangeRows, validateExchange, exchangeCSV, EXCHANGE_FIELDS, EXCHANGE_TABS } from './workspace-exchange.js?v=sales20261027-r4standalone';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r4standalone';
+import { renderScenarioVisual, visualForAttempt, prefetchScenarioFrame } from './scenario-visuals.js?v=sales20261027-r4standalone';
+export { translate, localizedField } from './workspace-i18n.js?v=sales20261027-r4standalone';
+export { exchangeRows, validateExchange, exchangeCSV } from './workspace-exchange.js?v=sales20261027-r4standalone';
 
 // Local demo only. PDF pages 7-23 define the scope, not an approved scoring method.
 // Integration: mountWorkspace(root, { onOpenScene, onStateChange }); no parent changes.
-export const STORAGE_KEY = 'university-vr.workspace.v1';
+export const STORAGE_KEY = 'university-vr-proposal.workspace.v1';
 export const SCHEMA_VERSION = 1;
 export const WORKSPACE_GROUPS = [
   { title: 'Обзор', ids: [1] },
@@ -673,7 +673,7 @@ export function mountWorkspace(root, options = {}) {
   frame.setAttribute('data-vr-workspace', '');
   const stylesheet = doc.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = new URL('./workspace.css?v=sales20261027-r1', import.meta.url).href;
+  stylesheet.href = new URL('./workspace.css?v=sales20261027-r4standalone', import.meta.url).href;
   if (!doc.head?.querySelector?.('link[href*="workspace.css"]')) root.append(stylesheet);
   root.append(frame);
 

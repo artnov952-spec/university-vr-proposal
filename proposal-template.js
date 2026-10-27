@@ -1,10 +1,10 @@
-import { proposalContent } from './proposal-content.js?v=sales20261027-r1';
-import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r1';
-import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r1';
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r1';
-import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r1';
-import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r1';
-import { renderInternationalEvidence } from './international-evidence.js?v=sales20261027-r3public';
+import { proposalContent } from './proposal-content.js?v=sales20261027-r4standalone';
+import { PANORAMA_MEDIA } from './panorama/media.js?v=sales20261027-r4standalone';
+import { SCENARIO_FRAMES } from './scenario-visuals.js?v=sales20261027-r4standalone';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r4standalone';
+import { renderClassroomPlan } from './classroom-plan.js?v=sales20261027-r4standalone';
+import { renderTechnicalDetails } from './proposal-technical.js?v=sales20261027-r4standalone';
+import { renderInternationalEvidence } from './international-evidence.js?v=sales20261027-r4standalone';
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const icon = name => `<svg class="i" aria-hidden="true"><use href="./assets/ui-icons/sprite.svg#i-${name}"></use></svg>`;
 export const SALES_SECTIONS = ['purpose','experience','environments','benefits','workflow','classroom','next-step'];

@@ -1,4 +1,4 @@
-import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r1';
+import { scenarioLibrary } from './scenario-library.js?v=sales20261027-r4standalone';
 
 // Whole, fixed-camera renders. No independently scaled people, props, masks or sprite atlases.
 export const SCENARIO_FRAMES = Object.freeze(Object.fromEntries(scenarioLibrary.map(item => [item.id,

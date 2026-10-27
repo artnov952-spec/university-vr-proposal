@@ -1,4 +1,4 @@
-export const LANGUAGE_KEY = 'university-vr.language';
+export const LANGUAGE_KEY = 'university-vr-proposal.language';
 const listeners = new Set();
 let language = 'ru';
 try { const saved = globalThis.localStorage?.getItem(LANGUAGE_KEY); if (saved === 'uz' || saved === 'ru') language = saved; } catch {}
